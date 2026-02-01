@@ -2,12 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Spamm 💘</title>
+<title>Valentine 💘</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 * { box-sizing: border-box; }
-
 body {
   margin: 0;
   height: 100vh;
@@ -18,8 +16,6 @@ body {
   justify-content: center;
   overflow: hidden;
 }
-
-/* Floating hearts */
 .heart {
   position: absolute;
   font-size: 20px;
@@ -30,8 +26,6 @@ body {
   from { transform: translateY(100vh); opacity: 1; }
   to { transform: translateY(-10vh); opacity: 0; }
 }
-
-/* Card */
 .card {
   background: white;
   border-radius: 25px;
@@ -42,27 +36,10 @@ body {
   box-shadow: 0 20px 40px rgba(0,0,0,0.2);
   animation: pop 0.6s ease;
 }
-@keyframes pop {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-img {
-  width: 100%;
-  border-radius: 20px;
-  margin-bottom: 20px;
-}
-
-h1 { color: #ff4d6d; }
-h2 { color: #ff7f9c; }
-h3 { color: #555; }
-
-/* Buttons */
-.buttons {
-  position: relative;
-  height: 120px;
-}
-
+@keyframes pop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+img { width: 100%; border-radius: 20px; margin-bottom: 20px; }
+h1 { color: #ff4d6d; } h2 { color: #ff7f9c; } h3 { color: #555; }
+.buttons { position: relative; height: 120px; }
 button {
   padding: 15px 25px;
   font-size: 18px;
@@ -72,21 +49,9 @@ button {
   transition: 0.3s;
   position: absolute;
 }
-
-#yesBtn {
-  background: linear-gradient(135deg, #4CAF50, #66ff99);
-  color: white;
-  left: 20%;
-}
+#yesBtn { background: linear-gradient(135deg, #4CAF50, #66ff99); left: 20%; color:white;}
 #yesBtn:hover { transform: scale(1.15); }
-
-#noBtn {
-  background: linear-gradient(135deg, #ff4d4d, #ff9999);
-  color: white;
-  left: 55%;
-}
-
-/* Continue */
+#noBtn { background: linear-gradient(135deg, #ff4d4d, #ff9999); left: 55%; color:white;}
 #continueBtn {
   position: relative;
   background: linear-gradient(135deg, #6a5acd, #a48cff);
@@ -98,46 +63,32 @@ button {
   margin-top: 15px;
 }
 #continueBtn:hover { transform: scale(1.15); }
+#finalMessage { opacity: 0; animation: fadeIn 1.5s ease forwards; margin-top: 20px; color: #ff4d6d; font-size: 20px; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+.explosion-heart { position: fixed; font-size: 24px; animation: explode 1.2s ease-out forwards; pointer-events: none; }
+@keyframes explode { from { transform: translate(0,0) scale(1); opacity:1; } to { transform: translate(var(--x), var(--y)) scale(0.5); opacity:0; } }
 
-/* Final message */
-#finalMessage {
-  opacity: 0;
-  animation: fadeIn 1.5s ease forwards;
+/* Intro page styling */
+#introPage {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#introPage button {
+  position: static;
   margin-top: 20px;
-  color: #ff4d6d;
-  font-size: 20px;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Explosion hearts */
-.explosion-heart {
-  position: fixed;
-  font-size: 24px;
-  animation: explode 1.2s ease-out forwards;
-  pointer-events: none;
-}
-@keyframes explode {
-  from { transform: translate(0,0) scale(1); opacity: 1; }
-  to {
-    transform: translate(var(--x), var(--y)) scale(0.5);
-    opacity: 0;
-  }
 }
 </style>
 </head>
-
 <body>
 
-<!-- MUSIC (hidden) -->
 <audio id="loveMusic" loop>
-  <source src="https://www.dropbox.com/scl/fi/tiqlfvwn2r5o0g4zwmg3o/SpotiDownloader.com-Logariasmos-Katerina-Lioliou.mp3?raw=1" type="audio/mpeg">
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-/* Floating hearts */
 setInterval(() => {
   const heart = document.createElement("div");
   heart.className = "heart";
@@ -149,27 +100,31 @@ setInterval(() => {
 }, 500);
 </script>
 
-<!-- PAGE 1 -->
-<div class="card" id="page1">
+<!-- Intro Page -->
+<div class="card" id="introPage">
+  <h1>Πάτα το και θα δεις!</h1>
+  <button onclick="startValentine()">ΠΑΤΑ ΤΟ</button>
+</div>
+
+<!-- Page 1 -->
+<div class="card" id="page1" style="display:none;">
   <img src="https://i.imgur.com/oAsIkKv.gif">
   <h1>Xrysa, will you be my Valentine? 💘</h1>
-
   <div class="buttons">
     <button id="yesBtn" onclick="sayYes()">YES</button>
     <button id="noBtn" onmouseover="moveNo()">NO</button>
   </div>
 </div>
 
-<!-- PAGE 2 -->
+<!-- Page 2 -->
 <div class="card" id="page2" style="display:none;">
   <h1>YEAHHH 😜😜</h1>
   <img src="https://i.imgur.com/Xo85FZ1.jpeg">
   <h3>Αυτό έλειπε να πεις και όχι!<br>#Πεκουλινιι!!</h3>
-
   <button id="continueBtn" onclick="goFinal()">Continue 💌</button>
 </div>
 
-<!-- PAGE 3 -->
+<!-- Page 3 -->
 <div class="card" id="page3" style="display:none;">
   <h1>💖</h1>
   <p id="finalMessage">
@@ -179,6 +134,11 @@ setInterval(() => {
 </div>
 
 <script>
+function startValentine() {
+  introPage.style.display = "none";
+  page1.style.display = "block";
+}
+
 function moveNo() {
   const noBtn = document.getElementById("noBtn");
   noBtn.style.left = Math.random() * 220 + "px";
@@ -194,23 +154,20 @@ function goFinal() {
   page2.style.display = "none";
   page3.style.display = "block";
 
-  // PLAY MUSIC 🎶
   document.getElementById("loveMusic").play();
 
-  // Explosion 💥
-  for (let i = 0; i < 30; i++) {
+  for (let i=0;i<30;i++){
     const heart = document.createElement("div");
-    heart.className = "explosion-heart";
-    heart.innerHTML = "💖";
-    heart.style.left = "50%";
-    heart.style.top = "50%";
-    heart.style.setProperty("--x", (Math.random()-0.5)*300 + "px");
-    heart.style.setProperty("--y", (Math.random()-0.5)*300 + "px");
+    heart.className="explosion-heart";
+    heart.innerHTML="💖";
+    heart.style.left="50%";
+    heart.style.top="50%";
+    heart.style.setProperty("--x",(Math.random()-0.5)*300+"px");
+    heart.style.setProperty("--y",(Math.random()-0.5)*300+"px");
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 1200);
+    setTimeout(()=>heart.remove(),1200);
   }
 }
 </script>
-
 </body>
 </html>
